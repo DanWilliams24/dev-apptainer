@@ -1,0 +1,29 @@
+# Ignore virtual environment directory (persistent runtime, not tracked)
+venv/
+
+# Ignore code-server installation (persisted on host)
+code-server/
+
+# Ignore built or downloaded container images (*.sif), if they're generated in the repo (optional)
+*.sif
+
+# Ignore temporary files from builds, caches, logs, etc.
+*.log
+*.tmp
+.cache/
+*.tar.gz
+/tmp/
+
+# Ignore personal config files that should not be committed.
+# For example, if you have a local configuration overriding config.env:
+config.env.local
+
+# Optionally ignore the complete config.env file,
+# if you prefer users to configure their own settings.
+# You can track a sample file like config.env.example instead.
+config.env
+
+# Ignore editor temporary files and OS-generated files
+*~
+.DS_Store
+Thumbs.db

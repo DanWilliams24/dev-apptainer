@@ -1,0 +1,41 @@
+Bootstrap: docker
+From: nvidia/cuda:12.2.0-runtime-ubuntu22.04
+
+%post
+    # Install minimal tools
+    apt-get update && apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-venv \
+        git \
+        ca-certificates \
+        curl \
+        unzip \
+        file
+
+    # VSCode CLI install (used for tunnels)
+    mkdir -p /opt/vscode-cli
+    cd /opt/vscode-cli
+    curl -L -o vscode_cli.tar.gz https://update.code.visualstudio.com/latest/cli-linux-x64/stable
+    tar -xzf vscode_cli.tar.gz
+    rm vscode_cli.tar.gz
+
+    # Set up symlink for python, pip and vscode if needed
+    ln -s /usr/bin/python3 /usr/local/bin/python || true
+    ln -s /usr/bin/pip3 /usr/local/bin/pip || true
+    ln -s /opt/vscode-cli/code /usr/local/bin/code
+
+%environment
+    export VENV_PATH="/venv"
+    export PATH="$VENV_PATH/bin:$PATH"
+    export PYTHONPATH="$VENV_PATH/lib/python3.10/site-packages:$PYTHONPATH"
+
+
+%runscript
+    #!/bin/bash
+    # lets just pass control to the entrypoint.sh script so theres no need to rebuild everytime when we make changes to %runscript section
+    exec /workspace/container/scripts/entrypoint.sh
+
+%startscript
+    #!/bin/bash
+    exec /workspace/container/scripts/entrypoint.sh
