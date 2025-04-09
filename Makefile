@@ -31,7 +31,10 @@ purge:
 	@echo "[Purge] Removing venv, code-server, cache, backups"
 	rm -rf $(VENV_PATH)
 	rm -rf $(CODESERVER_DIR)
-	rm -rf $(PROJECT_ROOT)/.cache/pip $(PROJECT_ROOT)/.cache/code-server
+	rm -rf $(PROJECT_ROOT)/.cache/pip
+	rm -rf $(PROJECT_ROOT)/.cache/code-server
+	rm -rf $(PROJECT_ROOT)/.apptainer-cache
+	rm -rf $(PROJECT_ROOT)/tmp
 	rm -f ~/.bash_profile.backup.*
 	@echo "[Purge] Done"
 
@@ -42,5 +45,10 @@ distclean: purge
 
 build: 
 	@echo "[Build] Building Apptainer Image"
+	mkdir -p $(PROJECT_ROOT)/.apptainer-cache
+	mkdir -p $(PROJECT_ROOT)/tmp
+	APPTAINER_CACHEDIR="$(PROJECT_ROOT)/.apptainer-cache" \
+	TEMP="$(PROJECT_ROOT)/tmp" \
+	TMPDIR="$(PROJECT_ROOT)/tmp" \
 	apptainer build $(CONTAINER_IMAGE) container.def
 	@echo "[Build] Rebuilt Apptainer Image"

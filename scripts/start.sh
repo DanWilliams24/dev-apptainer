@@ -3,6 +3,9 @@ set -e
 echo "[Debug] Running on $(hostname)"
 source "$(dirname "$0")/load_config.sh"
 
+export APPTAINER_CACHEDIR="$PROJECT_ROOT/.apptainer-cache"
+export APPTAINER_TMPDIR="$PROJECT_ROOT/tmp"
+
 # Create the bind mount target if it doesn't exist (do NOT populate it)
 if [[ ! -e "$VENV_PATH" ]]; then
     echo "[Host] Creating empty mount point for venv at $VENV_PATH"
