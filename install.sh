@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-CONFIG_PATH="$(dirname "$0")/../config.env"
+CONFIG_PATH="$(dirname "$0")/config.env"
 
 echo "Apptainer Dev Environment Installer"
 echo "==================================="
