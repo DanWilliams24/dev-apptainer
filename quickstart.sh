@@ -4,8 +4,8 @@ set -e
 echo "Apptainer Dev Environment Quickstart"
 echo "===================================="
 
-source "$(dirname "$0")/scripts/load_config.sh"
-
+SOURCE_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+source "$SOURCE_DIR/scripts/load_config.sh"
 
 # === Step 2: Run make build if needed ===
 if [[ ! -f "$CONTAINER_IMAGE" ]]; then
@@ -42,5 +42,4 @@ srun --gres=gpu:$SLURM_GPUS \
      --cpus-per-task=$SLURM_CPUS \
      --mem=$SLURM_MEM \
      --time=$SLURM_TIME \
-     --pty bash -c "tmux new-session -s $SESSION_NAME './scripts/start.sh'"
-
+     --pty bash -c "tmux new-session -s $SESSION_NAME '$LAUNCHER_PATH'"

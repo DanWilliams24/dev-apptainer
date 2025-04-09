@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
 echo "[Debug] Running on $(hostname)"
-source "$(dirname "$0")/load_config.sh"
+SOURCE_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+echo "[Debug] Script located in $SOURCE_DIR"
+source "$SOURCE_DIR/load_config.sh"
 
+echo "Start point: - exports"
 export APPTAINER_CACHEDIR="$PROJECT_ROOT/.apptainer-cache"
 export APPTAINER_TMPDIR="$PROJECT_ROOT/tmp"
-
+echo "Fixed point - exports"
 # Create the bind mount target if it doesn't exist (do NOT populate it)
 if [[ ! -e "$VENV_PATH" ]]; then
     echo "[Host] Creating empty mount point for venv at $VENV_PATH"
