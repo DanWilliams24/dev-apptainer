@@ -4,13 +4,13 @@ Lightweight GPU-ready Apptainer setup with JAX, Python, and VS Code CLI support.
 
 ---
 
-## 📦 Overview
+## Overview
 
 This project is designed to help you launch an interactive development container (with GPU support) directly on SLURM nodes, while maintaining a persistent Python environment and developer configuration.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 | File / Folder                     | Description                                                            |
 |----------------------------------|------------------------------------------------------------------------|
@@ -24,7 +24,7 @@ This project is designed to help you launch an interactive development container
 
 ---
 
-## 🧠 Files Dependent on `config.env`
+## Files Dependent on `config.env`
 
 These scripts source or include `config.env` and require it to be correctly generated:
 
@@ -36,7 +36,7 @@ These scripts source or include `config.env` and require it to be correctly gene
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone and install
 
@@ -74,7 +74,7 @@ bash quickstart.sh
 
 ---
 
-## 🧹 Cleanup Commands
+## Cleanup Commands
 
 ```bash
 make clean       # Removes local Python and code-server cache
@@ -85,7 +85,7 @@ make distclean   # Full wipe, including the Apptainer container image
 
 ---
 
-## ⚙️ Build Container Manually
+## Build Container Manually
 
 ```bash
 make build
@@ -99,7 +99,7 @@ apptainer build <output-image> container.def
 
 ---
 
-## 🛠 Configuration Options (in `config.env`)
+## Configuration Options (in `config.env`)
 
 | Variable         | Description                                     |
 |------------------|-------------------------------------------------|
@@ -113,7 +113,7 @@ apptainer build <output-image> container.def
 
 ---
 
-## 📎 Notes
+## Notes
 
 - No root or fakeroot is required to run this setup.
 - VS Code CLI (for tunneling) is built into the container and can be used if needed.
@@ -121,7 +121,7 @@ apptainer build <output-image> container.def
 
 ---
 
-## ✅ Example SLURM Run (Quickstart)
+## Example SLURM Run (Quickstart)
 
 ```bash
 bash quickstart.sh
