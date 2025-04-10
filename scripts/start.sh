@@ -5,6 +5,9 @@ SOURCE_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo "[Debug] Script located in $SOURCE_DIR"
 source "$SOURCE_DIR/load_config.sh"
 
+echo "[Debug] PROJECT_ROOT=$PROJECT_ROOT"
+echo "[Debug] VENV_PATH=$VENV_PATH"
+
 echo "Start point: - exports"
 export APPTAINER_CACHEDIR="$PROJECT_ROOT/.apptainer-cache"
 export APPTAINER_TMPDIR="$PROJECT_ROOT/tmp"

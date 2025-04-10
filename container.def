@@ -30,12 +30,13 @@ From: nvidia/cuda:12.2.0-runtime-ubuntu22.04
     export PATH="$VENV_PATH/bin:$PATH"
     export PYTHONPATH="$VENV_PATH/lib/python3.10/site-packages:$PYTHONPATH"
 
+%files
+scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 %runscript
     #!/bin/bash
     # lets just pass control to the entrypoint.sh script so theres no need to rebuild everytime when we make changes to %runscript section
-    exec /workspace/container/scripts/entrypoint.sh
-
+    exec /usr/local/bin/entrypoint.sh
 %startscript
     #!/bin/bash
-    exec /workspace/container/scripts/entrypoint.sh
+    exec /usr/local/bin/entrypoint.sh
